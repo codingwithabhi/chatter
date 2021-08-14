@@ -2,6 +2,7 @@
 Clone Project
 Create virtual Environment
 cd chatter
+Run python manage.py runserver
 goto http://127.0.0.1:8000/chatter/chat-board/
 
 Screenshot
