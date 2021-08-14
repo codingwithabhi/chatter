@@ -78,7 +78,7 @@
         
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
       
@@ -93,7 +93,7 @@
                     var message_id =  $(this)[0].dataset.message_id
                     
                     var csrf_token = $("#csrf_token")[0].innerHTML
-                    var form =  '<form id="deleteMessageModal"  method="post" action="/chatter/chat-board/delete/'+message_id+'/"'+'/>' +csrf_token+'<input class="form-control" type="text" id="token" name="token" required=True>' +'<button class="btn btn-default" type="submit">Delete</button></form>'
+                    var form =  '<form id="deleteMessageModal"  method="post" action="/chatter/chat-board/delete/'+message_id+'/"'+'/>' +csrf_token+'<input class="form-control" type="text" id="token" name="token" required=True>' +'<br><button class="btn btn-primary" type="submit">Delete</button></form>'
                    
                    
                     $(".modal-body").html(form);
@@ -106,7 +106,7 @@
                     event.preventDefault();
                 
                     var csrf_token = $("#csrf_token")[0].innerHTML
-                    var form =  '<form id="deleteMessageModal" method="post" action="/chatter/chat-board/delete-all-message/"'+'/>' +csrf_token+'<input class="form-control" type="text" id="token" name="token" required=True>' +'<button class="btn btn-default" type="submit">Delete All</button></form>'
+                    var form =  '<form id="deleteMessageModal" method="post" action="/chatter/chat-board/delete-all-message/"'+'/>' +csrf_token+'<input class="form-control" type="text" id="token" name="token" required=True>' +'<br><button class="btn btn-primary" type="submit">Delete All</button></form>'
                    
                    
                     $(".modal-body").html(form);
