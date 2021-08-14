@@ -25,15 +25,18 @@
     <div class="col-md-12">
     <span>
         <form action="{% url 'post-message' %}" method="post">
+          <div id="csrf_token">
             {% csrf_token %}
+          </div>
+           
             <div class="col-xs-3">
                 <input class="form-control" id="message" type="text" name="message">
               </div>
             
             <button type="submit" class="btn">Post</button>
-            <a href="{% url 'delete-all-message' %}" class="btn btn-primary">
-                Delete All
-             </a>
+             <a id="deleteAllModal" class="btn btn-primary" data-toggle="modal" value="test" data-target="#myModal" data-message_id={{message.pk}}>
+              Delete All Msg
+           </a>
             
         </form>
     </span>
@@ -89,17 +92,28 @@
                     event.preventDefault();
                     var message_id =  $(this)[0].dataset.message_id
                     
-                    console.log('clicked',$(this)[0].dataset.message_id)
-                    
-                    
-                    var marks = $("#modal_msg_id").val();
-                    
-                    var link =  '<form action="/chatter/chat-board/delete/'+message_id+'"'+'/>' +'<input class="form-control" type="text" id="token" name="token" required=True>' +'<button class="btn btn-default" type="submit">Delete</button></form>'
-                    $(".modal-body").html(link);
-                    console.log(link)
+                    var csrf_token = $("#csrf_token")[0].innerHTML
+                    var form =  '<form id="deleteMessageModal"  method="post" action="/chatter/chat-board/delete/'+message_id+'/"'+'/>' +csrf_token+'<input class="form-control" type="text" id="token" name="token" required=True>' +'<button class="btn btn-default" type="submit">Delete</button></form>'
+                   
+                   
+                    $(".modal-body").html(form);
+                  
                     
                     
                 });
+
+                $('#deleteAllModal').on('click', function (event) {
+                    event.preventDefault();
+                
+                    var csrf_token = $("#csrf_token")[0].innerHTML
+                    var form =  '<form id="deleteMessageModal" method="post" action="/chatter/chat-board/delete-all-message/"'+'/>' +csrf_token+'<input class="form-control" type="text" id="token" name="token" required=True>' +'<button class="btn btn-default" type="submit">Delete</button></form>'
+                   
+                   
+                    $(".modal-body").html(form);
+                    
+                    
+                });
+
             });
       })
         

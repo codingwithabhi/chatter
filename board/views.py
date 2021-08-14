@@ -24,9 +24,7 @@ def delete_all_message(request):
     return redirect("chat-board")
  
 def delete_message(request,pk):
-    token = request.GET.get("token")
-    print(request.GET)
-    print(token,settings.MESSAGE_TOKEN)
+    token = request.POST.get("token")
     if is_token_valid(token):
         message = get_object_or_404(Message,pk=pk)
         message.delete()
