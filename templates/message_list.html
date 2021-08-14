@@ -34,7 +34,7 @@
               </div>
             
             <button type="submit" class="btn">Post</button>
-             <a id="deleteAllModal" class="btn btn-primary" data-toggle="modal" value="test" data-target="#myModal" data-message_id={{message.pk}}>
+             <a id="deleteAllModal" class="btn btn-primary deleteAllModal" data-toggle="modal" value="test" data-target="#myModal" data-message_id={{message.pk}}>
               Delete All Msg
            </a>
             
@@ -54,7 +54,7 @@
         {% for message in message_list %}
         <hr>
         <span>
-       <span class="glyphicon glyphicon-comment" id="{{message.pk}}"></span> - <b> anonymous </b> - {{message.time}}  <a id="deleteModal" class="btn btn-primary" data-toggle="modal" value="test" data-target="#myModal" data-message_id={{message.pk}}>
+       <span class="glyphicon glyphicon-comment" id="{{message.pk}}"></span> - <b> anonymous </b> - {{message.time}}  <a id="deleteModal" class="btn btn-primary deleteModal" data-toggle="modal" value="test" data-target="#myModal" data-message_id={{message.pk}}>
             Delete
          </a></span>
         <h4><small>{{message.text}}</small></h4>
@@ -88,7 +88,7 @@
       $(document).ready(function() {
 
             $(function () {
-                $('#deleteModal').on('click', function (event) {
+                $('.deleteModal').on('click', function (event) {
                     event.preventDefault();
                     var message_id =  $(this)[0].dataset.message_id
                     
@@ -102,7 +102,7 @@
                     
                 });
 
-                $('#deleteAllModal').on('click', function (event) {
+                $('.deleteAllModal').on('click', function (event) {
                     event.preventDefault();
                 
                     var csrf_token = $("#csrf_token")[0].innerHTML
